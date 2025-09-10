@@ -26,28 +26,28 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#mission" className="text-white/80 hover:text-white transition-colors">
+                <Link href="/#mission" className="text-white/80 hover:text-white transition-colors">
                   Mission
                 </Link>
               </li>
               <li>
-                <Link href="#why-us" className="text-white/80 hover:text-white transition-colors">
+                <Link href="/#why-us" className="text-white/80 hover:text-white transition-colors">
                   Why Us
                 </Link>
               </li>
               <li>
-                <Link href="#program" className="text-white/80 hover:text-white transition-colors">
+                <Link href="/#program" className="text-white/80 hover:text-white transition-colors">
                   Program
                 </Link>
               </li>
               <li>
-                <Link href="#staff" className="text-white/80 hover:text-white transition-colors">
+                <Link href="/staff" className="text-white/80 hover:text-white transition-colors">
                   Staff
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="text-white/80 hover:text-white transition-colors">
-                  Pricing
+                <Link href="/pricing" className="text-white/80 hover:text-white transition-colors">
+                  Program
                 </Link>
               </li>
             </ul>
@@ -57,15 +57,14 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <div className="space-y-2 text-white/80">
-              <p>info@winterdebate.com</p>
-              <p>(555) 123-4567</p>
-              <p>Mountain Resort, Colorado</p>
+              <p>Winterdebateintensive@gmail.com</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/20 mt-12 pt-8 text-center">
           <p className="text-white/60">© 2024 Winter Debate Intensive. All rights reserved.</p>
+            <p className="text-white/40 text-sm mt-1">Designed & Coded by Tarun Vaidhyanathan | © 2024</p>
         </div>
       </div>
     </footer>

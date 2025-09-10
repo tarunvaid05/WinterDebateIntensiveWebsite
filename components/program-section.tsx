@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, Clock } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export function ProgramSection() {
@@ -27,16 +27,20 @@ export function ProgramSection() {
 
   const programs = [
     {
-      name: "Foundations Program",
-      dates: "December 27, 2025 - January 2, 2025",
-      duration: "6 days",
-      description: "Traditional; catered towards debaters looking to increase their lay appeal and strategy for any level of competition.",
+      name: "Pathos Program",
+      description:
+        "Catered towards debaters looking to refine their lay appeal, with a focus on topic specific prep and advanced speaking strategies.",
+      image: "/pathos.png",
+      fillImage: true,
+      color: "from-blue-500 to-cyan-500",
     },
     {
-      name: "Elite Program",
-      dates: "December 27, 2025 - January 2, 2025",
-      duration: "6 days",
-      description: "Progressive; catered towards debaters looking to hone their skills in K, theory, or technical policy debate.",
+      name: "Logos Program",
+      description:
+        'Catered towards debaters looking to succeed "progressively", with a focus on K, theory, and technical policy style argumentation.',
+      image: "/logos.png",
+      fillImage: true,
+      color: "from-indigo-500 to-purple-500",
     },
   ]
 
@@ -44,7 +48,7 @@ export function ProgramSection() {
     <section id="program" className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-8 transition-all duration-1000 ${
             isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"
           }`}
         >
@@ -55,36 +59,68 @@ export function ProgramSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {programs.map((program, index) => (
-            <Card
-              key={index}
-              className={`hover-lift transition-all duration-700 ${
-                isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"
-              }`}
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl font-bold text-primary mb-2">{program.name}</CardTitle>
-                <p className="text-muted-foreground">{program.description}</p>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center justify-center space-x-2">
-                    <Calendar className="w-5 h-5 text-accent" />
-                    <span className="text-muted-foreground">{program.dates}</span>
+        <div className="grid md:grid-cols-2 gap-6">
+          {programs.map((program, index) => {
+            const IconComponent = (program as any).icon
+            return (
+              <Card
+                key={index}
+                className={`hover-lift transition-all duration-700 relative overflow-hidden ${
+                  isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"
+                }`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${program.color} opacity-5`}></div>
+
+                <CardHeader className="text-center relative z-10">
+                  <div className="flex justify-center mb-4">
+                    {program.fillImage ? (
+                      <div
+                        className={`w-16 h-16 rounded-full shadow-lg relative overflow-hidden ${
+                          program.name === "Pathos Program" ||
+                          program.name === "Logos Program" ||
+                          program.name === "Ethos Program"
+                            ? "bg-transparent"
+                            : "bg-white"
+                        }`}
+                      >
+                        <Image
+                          src={program.image || "/placeholder.svg"}
+                          alt={program.name}
+                          fill
+                          className={`object-center ${
+                            program.name === "Pathos Program" ||
+                            program.name === "Logos Program" ||
+                            program.name === "Ethos Program"
+                              ? "object-contain scale-150"
+                              : "object-cover"
+                          }`}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className={`p-4 rounded-full bg-gradient-to-br ${program.color} shadow-lg relative overflow-hidden`}
+                      >
+                        {IconComponent ? <IconComponent className="w-8 h-8 text-white" /> : null}
+                      </div>
+                    )}
                   </div>
-                  <div className="flex items-center justify-center space-x-2">
-                    <Clock className="w-5 h-5 text-accent" />
-                    <span className="text-muted-foreground">{program.duration} intensive</span>
+
+                  <CardTitle className="text-2xl font-bold text-primary mb-2">{program.name}</CardTitle>
+                  <p className="text-muted-foreground">{program.description}</p>
+                </CardHeader>
+
+                <CardContent className="text-center relative z-10">
+                  <div className="space-y-4 mb-2">
+                    <div className="flex items-center justify-center space-x-2"></div>
                   </div>
-                </div>
-                <Link href="/pricing">
-                  <Button className="w-full hover-lift">View Pricing</Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
+                  <Link href="/pricing">
+                    <Button className="w-full hover-lift">View Details</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

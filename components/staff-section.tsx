@@ -10,16 +10,13 @@ export function StaffSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.2 },
     )
 
     const element = document.getElementById("staff")
     if (element) observer.observe(element)
-
     return () => observer.disconnect()
   }, [])
 
@@ -46,34 +43,22 @@ export function StaffSection() {
 
   const instructors = [
     {
-      name: "Alex Thompson",
-      title: "Policy Debate Specialist",
-      bio: "Recent Yale graduate and former national qualifier. Specializes in policy debate strategy and case construction.",
+      name: "Mac Hays",
+      title: "Instructor",
+      bio: "Mac Hays is the Director of Public Forum at the Argument Institute. As a competitor, he championed several bid tournaments, placed 4th at NSDA Nationals, and had one of the most decorated American Parliamentary Debate careers of his time—earning his graduating class's award for most successful competitive career, placing in the top three at APDA Nationals three years in a row, and winning top speaker in 2023. Over his career, he championed 15 tournaments, competed in over 150 elimination rounds, and ended with a 32-tournament break streak. As a coach, Mac's students have earned over 150 Gold TOC bids, championed and top-spoke major tournaments including Harvard and Yale, and reached the finals stage at both the TOC and NSDA Nationals. He has coached at 12 summer camps, served as Assistant PF Coach at American Heritage Broward, and was awarded a Fulbright grant to teach debate in Taiwan for a year after college.",
+      image: "/mac.jpg",
     },
     {
-      name: "Jordan Kim",
-      title: "Public Forum Coach",
-      bio: "Northwestern alumnus with expertise in PF debate. Known for innovative teaching methods and student success.",
+      name: "Jason",
+      title: "Instructor",
+      image: "/jason.jpg",
+      bio: "Jason debated at Strake Jesuit, where he served as a team captain. As a debater, he earned 27 bids to the TOC, qualified all four years, and was ranked as high as #1 in the nation. He won multiple national tournaments, including the TOC, Glenbrooks, Yale, Sunvite, Blake, Lexington, Grapevine, Laird Lewis, UH, and the Harvard RR. He also earned 1st speaker at Glenbrooks and Emory (2x), 2nd speaker at Bronx and Sunvite, and 3rd speaker at UKSO (2x). Jason has extensive experience coaching and working with teams, and he's thrilled to work at VBI this summer!",
     },
     {
-      name: "Taylor Brooks",
-      title: "Cross-Ex Specialist",
-      bio: "Former national champion in cross-examination. Helps students master the art of strategic questioning.",
-    },
-    {
-      name: "Casey Martinez",
-      title: "Research Coordinator",
-      bio: "Expert in evidence analysis and research strategy. Teaches students how to find and utilize winning arguments.",
-    },
-    {
-      name: "Riley Johnson",
-      title: "Speaking Coach",
-      bio: "Professional public speaking trainer with focus on delivery, presence, and persuasive communication.",
-    },
-    {
-      name: "Morgan Davis",
-      title: "Tournament Prep Specialist",
-      bio: "Former tournament director with deep knowledge of competition strategy and mental preparation techniques.",
+      name: "Coming Soon",
+      title: "Instructor",
+      bio: "More details to be announced soon.",
+      placeholder: true as const,
     },
   ]
 
@@ -87,31 +72,14 @@ export function StaffSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">Our Expert Staff</h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Learn from nationally recognized champions and expert coaches
-          </p>
         </div>
 
-        <div className="mb-20">
+        <div className="mb-1">
           <div
             className={`text-center mb-16 transition-all duration-1000 ${
               isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"
             }`}
-          >
-            <h3 className="text-3xl font-bold text-primary mb-6">Who We Are</h3>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Winter Debate Intensive brings together the most accomplished coaches and instructors in the debate
-                community. Our team combines decades of competitive experience with innovative teaching methods to
-                create an unparalleled learning environment.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                From national champions to PhD researchers, our staff is united by a passion for debate excellence and a
-                commitment to helping students reach their full potential. We believe that great coaching transforms not
-                just debate skills, but critical thinking, confidence, and leadership abilities that last a lifetime.
-              </p>
-            </div>
-          </div>
+          />
         </div>
 
         {/* Founders */}
@@ -148,33 +116,46 @@ export function StaffSection() {
         </div>
 
         {/* Instructors */}
-        <div className="relative">
+        <div>
           <h3 className="text-3xl font-bold text-primary text-center mb-12">Instructors</h3>
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
-              <div className="text-center">
-                <h4 className="text-2xl font-bold text-primary mb-2">More to be announced</h4>
-                <p className="text-muted-foreground">Stay tuned for our incredible instructor lineup!</p>
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 blur-sm">
-              {instructors.map((instructor, index) => (
+          <div className="grid md:grid-cols-3 gap-6">
+            {instructors.map((instructor, index) => {
+              const isPlaceholder = Boolean((instructor as any).placeholder)
+              return (
                 <Card
                   key={index}
                   className={`hover-lift transition-all duration-700 ${
                     isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"
-                  }`}
+                  } ${isPlaceholder ? "relative" : ""}`}
                   style={{ animationDelay: `${(index + 3) * 150}ms` }}
                 >
-                  <CardContent className="p-6 text-center">
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-300"></div>
-                    <h4 className="text-lg font-bold text-primary mb-1">{instructor.name}</h4>
-                    <p className="text-accent font-semibold mb-3 text-sm">{instructor.title}</p>
-                    <p className="text-muted-foreground text-xs leading-relaxed">{instructor.bio}</p>
+                  {isPlaceholder && (
+                    <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
+                      <div className="text-center">
+                        <h4 className="text-xl font-bold text-primary mb-2">Coming Soon</h4>
+                      </div>
+                    </div>
+                  )}
+                  <CardContent className={`p-6 text-center ${isPlaceholder ? "blur-sm" : ""}`}>
+                    <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
+                      {instructor.image ? (
+                        <Image
+                          src={instructor.image || "/placeholder.svg"}
+                          alt={instructor.name}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-300" />
+                      )}
+                    </div>
+                    <h4 className="text-xl font-bold text-primary mb-2">{instructor.name}</h4>
+                    <p className="text-accent font-semibold mb-4">{instructor.title}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{instructor.bio}</p>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+              )
+            })}
           </div>
         </div>
       </div>

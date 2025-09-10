@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Check, Star } from "lucide-react"
+import { Calendar, Star } from "lucide-react"
 
 export function PricingSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -24,53 +24,11 @@ export function PricingSection() {
     return () => observer.disconnect()
   }, [])
 
-  const packages = [
-    {
-      name: "Foundations Program",
-      price: "$1,299",
-      description: "Perfect for beginners and intermediate debaters",
-      dates: "December 26, 2024 - January 1, 2025",
-      features: [
-        "7-day intensive program",
-        "Daily coaching sessions",
-        "Basic research training",
-        "Practice rounds",
-        "Materials included",
-        "Certificate of completion",
-      ],
-      popular: false,
-      googleFormUrl: "https://forms.google.com/foundations-program",
-    },
-    {
-      name: "Elite Program",
-      price: "$2,299",
-      description: "Advanced training for experienced competitors",
-      dates: "December 26, 2024 - January 3, 2025",
-      features: [
-        "9-day intensive program",
-        "Advanced strategy sessions",
-        "One-on-one coaching",
-        "Tournament simulation",
-        "Video analysis",
-        "Private coaching sessions",
-        "Custom research packet",
-        "Year-long mentoring",
-      ],
-      popular: true,
-      googleFormUrl: "https://forms.google.com/elite-program",
-    },
-  ]
-
-  const curriculum = [
-    "Advanced Argumentation Strategies",
-    "Research & Evidence Analysis",
-    "Cross-Examination Mastery",
-    "Rebuttal Techniques",
-    "Case Construction Workshop",
-    "Tournament Simulation Rounds",
-    "Public Speaking Excellence",
-    "Winter-Themed Practice Topics",
-  ]
+  const handleRegistration = (program: string) => {
+    const formUrl =
+      program === "Pathos" ? "https://docs.google.com/forms/d/1JkJxzQE0YkWdLu-rm3__Y0uid-Bj-KuJqtA0bnb4sZc/viewform?edit_requested=true" : "https://docs.google.com/forms/d/1JkJxzQE0YkWdLu-rm3__Y0uid-Bj-KuJqtA0bnb4sZc/viewform?edit_requested=true"
+    window.open(formUrl, "_blank")
+  }
 
   return (
     <section id="pricing" className="py-20">
@@ -83,82 +41,139 @@ export function PricingSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">Investment in Excellence</h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Choose the package that best fits your debate goals and budget
+            Choose your program and secure your spot at Winter Debate Intensive
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <div className="grid md:grid-cols-2 gap-8">
-              {packages.map((pkg, index) => (
-                <Card
-                  key={index}
-                  className={`relative hover-lift transition-all duration-700 ${
-                    pkg.popular ? "ring-2 ring-accent shadow-2xl scale-105" : ""
-                  } ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
-                  {pkg.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center space-x-1">
-                        <Star className="w-4 h-4" />
-                        <span>Most Popular</span>
-                      </div>
-                    </div>
-                  )}
+        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          <Card
+            className={`hover-lift transition-all duration-700 h-70 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
+          >
+            <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center">
+              <h3 className="text-3xl font-bold text-primary mb-6">Pathos Program</h3>
+              <div className="text-5xl font-bold text-foreground mb-6">$1,350</div>
+              <Button className="w-full hover-lift text-lg py-3" onClick={() => handleRegistration("Pathos")}>
+                Apply Now
+              </Button>
+            </CardContent>
+          </Card>
 
-                  <CardHeader className="text-center pb-4">
-                    <CardTitle className="text-2xl font-bold text-primary mb-2">{pkg.name}</CardTitle>
-                    <div className="text-4xl font-bold text-foreground mb-2">{pkg.price}</div>
-                    <p className="text-muted-foreground text-sm mb-2">{pkg.description}</p>
-                    <p className="text-accent text-sm font-semibold">{pkg.dates}</p>
-                  </CardHeader>
+          <Card
+            className={`hover-lift transition-all duration-700 h-70 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
+            style={{ animationDelay: "100ms" }}
+          >
+            <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center">
+              <h3 className="text-3xl font-bold text-primary mb-6">Logos Program</h3>
+              <div className="text-5xl font-bold text-foreground mb-6">$1,350</div>
+              <Button className="w-full hover-lift text-lg py-3" onClick={() => handleRegistration("Logos")}>
+                Apply Now
+              </Button>
+            </CardContent>
+          </Card>
 
-                  <CardContent className="pt-0">
-                    <ul className="space-y-3 mb-8">
-                      {pkg.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start space-x-3">
-                          <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+          <Card
+            className={`hover-lift transition-all duration-700 h-[32rem] ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
+            style={{ animationDelay: "200ms" }}
+          >
+            <CardHeader className="text-center pb-4">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                <Calendar className="w-8 h-8 text-white" />
+              </div>
+              <CardTitle className="text-2xl font-bold text-primary">Schedule</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0 overflow-y-auto max-h-80">
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm">
+                    <strong>Dec 27:</strong> 11AM-1PM, 2PM-6PM CST
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm">
+                    <strong>Dec 28:</strong> 11AM-1PM, 2PM-6PM CST
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm">
+                    <strong>Dec 29:</strong> 11AM-1PM, 2PM-6PM CST
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm">
+                    <strong>Dec 30:</strong> 11AM-1PM, 2PM-6PM CST
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-accent/20">
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
+                  <span className="text-sm font-medium">
+                    <strong>Dec 31:</strong> Free day!
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm">
+                    <strong>Jan 1:</strong> 11AM-1PM, 2PM-6PM CST
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm">
+                    <strong>Jan 2:</strong> 11AM-1PM, 2PM-6PM CST
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3 p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                  <span className="text-sm font-medium">
+                    <strong>Jan 3-4:</strong> Tournament days
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-                    <Button
-                      className={`w-full hover-lift ${pkg.popular ? "bg-accent hover:bg-accent/90" : ""}`}
-                      variant={pkg.popular ? "default" : "outline"}
-                      onClick={() => window.open(pkg.googleFormUrl, "_blank")}
-                    >
-                      Register for {pkg.name}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-1">
-            <div
-              className={`transition-all duration-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
-              style={{ animationDelay: "400ms" }}
-            >
-              <Card className="hover-lift h-fit">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-primary text-center">Curriculum Highlights</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {curriculum.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0 mt-2"></div>
-                        <span className="text-muted-foreground">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          <Card
+            className={`hover-lift transition-all duration-700 h-[32rem] ${isVisible ? "animate-fade-in-up" : "opacity-0 translate-y-10"}`}
+            style={{ animationDelay: "300ms" }}
+          >
+            <CardHeader className="text-center pb-4">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+                <Star className="w-8 h-8 text-white" />
+              </div>
+              <CardTitle className="text-2xl font-bold text-primary">Benefits</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0 flex-1">
+              <div className="space-y-3">
+                <div className="flex items-start space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-sm">6-day intensive program</span>
+                </div>
+                <div className="flex items-start space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-sm">2-day camp tournament</span>
+                </div>
+                <div className="flex items-start space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-sm">Custom research packet designed for TOC</span>
+                </div>
+                <div className="flex items-start space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-sm">Advanced strategy advice</span>
+                </div>
+                <div className="flex items-start space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-sm">Practice rounds with judging and feedback</span>
+                </div>
+                <div className="flex items-start space-x-3 p-2 rounded-lg bg-muted/30">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0 mt-2"></div>
+                  <span className="text-sm">Lectures from top national coaches</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

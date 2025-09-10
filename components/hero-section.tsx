@@ -78,8 +78,8 @@ export function HeroSection() {
                 Debate's First Winter Camp
               </h3>
               <div className="w-16 h-0.5 bg-primary/60 mx-auto mb-3"></div>
-              <p className="text-xl md:text-2xl font-medium leading-relaxed text-primary">
-                Our camp turns weeks into years of growth
+              <p className="text-lg md:text-1xl font-medium leading-relaxed text-primary">
+                Summer isn't enough. Reflect on Fall this Winter, and dominate In Spring. 
               </p>
             </div>
           </div>
