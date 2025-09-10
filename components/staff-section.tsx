@@ -49,10 +49,10 @@ export function StaffSection() {
       image: "/mac.jpg",
     },
     {
-      name: "Jason",
+      name: "Jason Zhao",
       title: "Instructor",
       image: "/jason.jpg",
-      bio: "Jason debated at Strake Jesuit, where he served as a team captain. As a debater, he earned 27 bids to the TOC, qualified all four years, and was ranked as high as #1 in the nation. He won multiple national tournaments, including the TOC, Glenbrooks, Yale, Sunvite, Blake, Lexington, Grapevine, Laird Lewis, UH, and the Harvard RR. He also earned 1st speaker at Glenbrooks and Emory (2x), 2nd speaker at Bronx and Sunvite, and 3rd speaker at UKSO (2x). Jason has extensive experience coaching and working with teams, and he's thrilled to work at VBI this summer!",
+      bio: "Jason debated at Strake Jesuit, where he served as a team captain. As a debater, he earned 27 bids to the TOC, qualified all four years, and was ranked as high as #1 in the nation. He won multiple national tournaments, including the TOC, Glenbrooks, Yale, Sunvite, Blake, Lexington, Grapevine, Laird Lewis, UH, and the Harvard RR. He also earned 1st speaker at Glenbrooks and Emory (2x), 2nd speaker at Bronx and Sunvite, and 3rd speaker at UKSO (2x)",
     },
     {
       name: "Coming Soon",
