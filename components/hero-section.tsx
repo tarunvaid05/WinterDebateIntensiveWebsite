@@ -79,7 +79,7 @@ export function HeroSection() {
               </h3>
               <div className="w-16 h-0.5 bg-primary/60 mx-auto mb-3"></div>
               <p className="text-lg md:text-1xl font-medium leading-relaxed text-primary">
-                Summer isn't enough. Reflect on Fall this Winter, and dominate In Spring. 
+                Summer isn't enough. Reflect on Fall this Winter, and dominate in Spring. 
               </p>
             </div>
           </div>
